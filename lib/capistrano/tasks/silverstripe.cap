@@ -15,10 +15,14 @@ namespace :silverstripe do
     task :build do
         on roles(:web) do
             within fetch(:root_dir) do
-                execute :php, "framework/cli-script.php dev/build"
-                execute :rm, "-R ./silverstripe-cache/*"
-                # Need to figure out issues with flushing the cache before enabling curl
-                # execute :curl, fetch(:website_url)
+                releases = capture(:ls, '-xr', releases_path).split
+                    if releases.length > 0
+                        last_release = releases.first
+                    	execute :echo, " \" \\$_FILE_TO_URL_MAPPING['/home/staging/websites/wowchia.staging.dotlabel.net/releases/#{last_release}'] = 'http://wowchia.staging.dotlabel.net';\" >> _ss_environment.php"
+                	execute :php, "framework/cli-script.php dev/build"
+                        # Need to figure out issues with flushing the cache before enabling curl
+                	# execute :curl, fetch(:website_url)
+		    end
             end
         end
     end
