@@ -4,7 +4,8 @@ namespace :silverstripe do
         task :update do
             on roles(:web) do
                 within release_path do
-                    execute :php, "composer.phar update"
+                    execute :composer, "install"
+		    # we should only update in development not deployment
                 end
             end
         end
