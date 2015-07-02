@@ -14,6 +14,7 @@ I have since moved on from Capistrano and now use [Shipit](https://github.com/ne
 * **Install Capistrano**
 
     Visit the Capistrano [Installation](http://capistranorb.com/documentation/getting-started/installation/) page for information on how to install Capistrano. If you've used Ruby before, installing it should be just a matter of running '`gem install capistrano`' from the command line.
+    (bundle install --path vendor/bundle)
 
 * **Commit application to Git**
 
